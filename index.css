@@ -1,13 +1,36 @@
-.body {
-	padding: 0;
-	margin: 0;
+body {
+    padding: 0;
+    margin: 0;
+    display: flex; /* Utiliser flexbox pour l'agencement */
+    flex-direction: column; /* Agencement vertical */
+    height: 100vh; /* Prendre toute la hauteur de la fenêtre */
+}
+
+h1 {
+    text-align: center; /* Centrer le titre */
+    margin: 20px; /* Ajouter un espace autour du titre */
+}
+
+.container {
+    display: flex; /* Agencement horizontal pour les offres et les détails */
+    flex: 1; /* Prendre toute la hauteur restante */
+    margin: 30px;
 }
 
 .job {
-	border: solid black 2px;
+    border: solid black 2px;
+    width: 50%; /* Prendre la moitié gauche de l'écran */
+    overflow-y: auto; /* Permettre le défilement si le contenu dépasse */
 }
 
 .job div {
-	border: solid black 2px;
-	margin: 2%;
+    border: solid black 2px;
+    margin: 2%;
+}
+
+.details {
+    width: 50%; /* Prendre la moitié droite de l'écran */
+    padding: 20px; /* Ajouter un peu d'espace autour */
+    border: solid black 2px; /* Ligne pour séparer les deux sections */
+    margin-left: 10px;
 }

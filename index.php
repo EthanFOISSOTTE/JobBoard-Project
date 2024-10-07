@@ -31,8 +31,8 @@
 			echo "
 				<div class='offres'>
 					<h1>".$offre['title']."</h1>
-					<p>".$offre['description']."<p>
-					<button>learn more</button>
+					<p>".$offre['description']."</p>
+					<button class='btn-offres' data-id=".$offre['job_offer_id'].">learn more</button>
 				</div>
 			";
 		}
@@ -42,5 +42,17 @@
 		die("Erreur : " . $e->getMessage());
 	}
 	?>
+
+	<script type="text/javascript">
+		document.addEventListener('DOMContentLoaded', function() {
+			const btns = document.querySelectorAll('.btn-offres');
+			btns.forEach(btn => {
+				btn.addEventListener('click', function() {
+					const id = this.getAttribute('data-id');
+					console.log('ID de l\'offre :', id);
+				});
+			});
+		});
+	</script>
 </body>
 </html>

@@ -1,0 +1,13 @@
+.body {
+	padding: 0;
+	margin: 0;
+}
+
+.job {
+	border: solid black 2px;
+}
+
+.job div {
+	border: solid black 2px;
+	margin: 2%;
+}

@@ -34,3 +34,7 @@ h1 {
     border: solid black 2px; /* Ligne pour séparer les deux sections */
     margin-left: 10px;
 }
+
+.titre_offre {
+	text-align: center;
+}

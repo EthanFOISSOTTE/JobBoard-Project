@@ -1,5 +1,5 @@
 <?php
-require 'connect.php'; // Connexion à la Base de Données
+require 'api/connect.php'; // Connexion à la Base de Données
 
 // Préparer et exécuter la requête
 $sql = "SELECT job_offer_id, title, description, location, salary FROM JobOffer"; // Ajout de job_offer_id
@@ -28,16 +28,16 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if (count($results) > 0) {
                 // Afficher chaque offre d'emplois
                 foreach ($results as $offre) {
-                    echo "<div>";
-                    echo "<h2>" . htmlspecialchars($offre["title"]) . "</h2>";
+    echo "<div>";
+    echo "<h2>" . htmlspecialchars($offre["title"]) . "</h2>";
 
-                    $description = htmlspecialchars("Nous recherchons un " . $offre["title"]);
-                    echo "<p>" . $description . "</p>";
+    $description = htmlspecialchars("Nous recherchons un " . $offre["title"]);
+    echo "<p>" . $description . "</p>";
 
-                    // Ajouter l'attribut data-id
-                    echo "<button type='button' class='btn-offres' data-id='" . $offre["job_offer_id"] . "'>En savoir plus</button>";
-                    echo "</div>";
-                }
+    // Ajouter l'attribut data-id
+    echo "<button type='button' class='btn-offres' data-id='" . $offre["job_offer_id"] . "'>En savoir plus</button>";
+    echo "</div>";
+}
             } else {
                 echo "<p>Aucune offre d'emploi disponible pour le moment.</p>";
             }
@@ -51,31 +51,32 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
 
     <script type="text/javascript">
-        document.addEventListener('DOMContentLoaded', function() {
-            const btns = document.querySelectorAll('.btn-offres');
-            btns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const id = this.getAttribute('data-id');
+    document.addEventListener('DOMContentLoaded', function() {
+        const btns = document.querySelectorAll('.btn-offres');
+        btns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const id = this.getAttribute('data-id');
 
-                    // Effectuer une requête AJAX pour récupérer les détails de l'offre
-                    fetch('get_offer.php?id=' + id)
-                        .then(response => response.json())
-                        .then(data => {
-                            if (data.success) {
-                                document.getElementById('details').innerHTML = `
-                                    <h2>${data.offer.title}</h2>
-                                    <p>${data.offer.description}</p>
-                                    <p><strong>Location:</strong> ${data.offer.location}</p>
-                                    <p><strong>Salary:</strong> $${data.offer.salary}</p>
-                                `;
-                            } else {
-                                document.getElementById('details').innerHTML = '<p>Erreur lors de la récupération des détails.</p>';
-                            }
-                        })
-                        .catch(error => console.error('Erreur:', error));
-                });
+                // Effectuer une requête AJAX pour récupérer les détails de l'offre
+                fetch('api/job_offer.php?id=' + id)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data) {
+                            document.getElementById('details').innerHTML = `
+                                <h2>${data.title}</h2>
+                                <p>${data.description}</p>
+                                <p><strong>Location:</strong> ${data.location}</p>
+                                <p><strong>Salary:</strong> $${data.salary}</p>
+                            `;
+                        } else {
+                            document.getElementById('details').innerHTML = '<p>Erreur lors de la récupération des détails.</p>';
+                        }
+                    })
+                    .catch(error => console.error('Erreur:', error));
             });
         });
-    </script>
+    });
+</script>
+
 </body>
 </html>

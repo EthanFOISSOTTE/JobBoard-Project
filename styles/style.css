@@ -1,0 +1,11 @@
+* {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+.offres {
+	border: 1px solid black;
+	margin: 10px;
+	padding: 10px;
+}

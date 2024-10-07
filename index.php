@@ -29,9 +29,20 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		    foreach ($results as $row) {
 		        echo "<div>";
 		        echo "<h2>" . htmlspecialchars($row["title"]) . "</h2>";
-		        echo "<p>" . htmlspecialchars($row["description"]) . "</p>";
-		        echo "<p><strong>Location :</strong> " . htmlspecialchars($row["location"]) . "</p>";
-		        echo "<p><strong>Salary :</strong> $" . htmlspecialchars($row["salary"]) . "</p>";
+
+		        $description = htmlspecialchars("Nous recherchons un " . $row["title"]);
+		        echo "<p>" . $description . "</p>";
+
+		        // // Limite la taille d'affichage de description
+		        // $description = htmlspecialchars($row["description"]);
+		        // if (strlen($description) > 35) {
+		        //     $description = substr($description, 0, 35) . "...";
+		        // }
+		        // echo "<p>" . $description . "</p>";
+
+		        // echo "<p><strong>Location :</strong> " . htmlspecialchars($row["location"]) . "</p>";
+		        // echo "<p><strong>Salary :</strong> $" . htmlspecialchars($row["salary"]) . "</p>";
+
 		        echo "<button type='button' id='more'>En savoir plus</button>";
 		        echo "</div>";
 		    }

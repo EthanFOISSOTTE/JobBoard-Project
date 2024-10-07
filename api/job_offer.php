@@ -1,6 +1,6 @@
 <?php
 header("Content-Type: application/json");
-require 'connect.php';
+require 'connect.php'; // Connexion à la Base de Données
 
 // Définir le HTTP
 $method = $_SERVER['REQUEST_METHOD'];
@@ -15,15 +15,29 @@ function getJobOffers($conn) {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-//Créer une nouvelle offre d'emploi
+// Créer une nouvelle offre d'emploi
 function createJobOffer($conn, $data) {
-    $stmt = $conn->prepare("INSERT INTO JobOffer (title, description, location, salary) VALUES (?, ?, ?, ?)");
-    return $stmt->execute([$data['title'], $data['description'], $data['location'], $data['salary']]);
+    $stmt = $conn->prepare("INSERT INTO JobOffer (title, description, location, salary, company_id) VALUES (?, ?, ?, ?, ?)");
+    return $stmt->execute([$data['title'], $data['description'], $data['location'], $data['salary'], $data['company_id']]);
 }
 
-// Récupérer une offre d'emploi par ID
+// Récupérer une offre d'emploi par ID avec le nom de la compagnie
 function getJobOfferById($conn, $id) {
-    $stmt = $conn->prepare("SELECT job_offer_id, title, description, location, salary FROM JobOffer WHERE job_offer_id = ?");
+    $stmt = $conn->prepare("
+        SELECT 
+            joboffer.job_offer_id, 
+            joboffer.title, 
+            joboffer.description, 
+            joboffer.location, 
+            joboffer.salary, 
+            company.name AS company_name 
+        FROM 
+            JobOffer AS joboffer 
+        JOIN 
+            Company AS company ON joboffer.company_id = company.company_id 
+        WHERE 
+            joboffer.job_offer_id = ?
+    ");
     $stmt->execute([$id]);
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }

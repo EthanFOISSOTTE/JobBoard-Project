@@ -14,6 +14,7 @@ CREATE TABLE `Company` (
   `industry` varchar(255),
   `description` text,
   `website` varchar(255),
+  `password` varchar(255),
   `created_at` datetime DEFAULT (now())
 );
 

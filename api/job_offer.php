@@ -2,45 +2,45 @@
 header("Content-Type: application/json");
 require 'connect.php';
 
-// Définir le verbe HTTP utilisé
+// Définir le HTTP
 $method = $_SERVER['REQUEST_METHOD'];
 
-// Récupérer les données envoyées par le client
+// Récupérer les données
 $data = json_decode(file_get_contents("php://input"), true);
 
-// Fonction pour récupérer toutes les offres d'emploi
+// Récupérer toutes les offres d'emploi
 function getJobOffers($conn) {
     $stmt = $conn->prepare("SELECT job_offer_id, title, description, location, salary FROM JobOffer");
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-// Fonction pour créer une nouvelle offre d'emploi
+//Créer une nouvelle offre d'emploi
 function createJobOffer($conn, $data) {
     $stmt = $conn->prepare("INSERT INTO JobOffer (title, description, location, salary) VALUES (?, ?, ?, ?)");
     return $stmt->execute([$data['title'], $data['description'], $data['location'], $data['salary']]);
 }
 
-// Fonction pour récupérer une offre d'emploi par ID
+// Récupérer une offre d'emploi par ID
 function getJobOfferById($conn, $id) {
     $stmt = $conn->prepare("SELECT job_offer_id, title, description, location, salary FROM JobOffer WHERE job_offer_id = ?");
     $stmt->execute([$id]);
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
-// Fonction pour mettre à jour une offre d'emploi
+// Mettre à jour une offre d'emploi
 function updateJobOffer($conn, $id, $data) {
     $stmt = $conn->prepare("UPDATE JobOffer SET title = ?, description = ?, location = ?, salary = ? WHERE job_offer_id = ?");
     return $stmt->execute([$data['title'], $data['description'], $data['location'], $data['salary'], $id]);
 }
 
-// Fonction pour supprimer une offre d'emploi
+// Supprimer une offre d'emploi
 function deleteJobOffer($conn, $id) {
     $stmt = $conn->prepare("DELETE FROM JobOffer WHERE job_offer_id = ?");
     return $stmt->execute([$id]);
 }
 
-// Gérer les différentes requêtes selon le verbe HTTP
+// Gérer les différentes requêtes selon le HTTP
 switch ($method) {
     case 'GET':
         if (isset($_GET['id'])) {

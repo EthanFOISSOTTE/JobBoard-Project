@@ -1,5 +1,5 @@
 <?php
-require 'connect.php'; // Connection à la Base de Données
+require 'connect.php'; // Connexion à la Base de Données
 
 // Préparer et exécuter la requête
 $sql = "SELECT title, description, location, salary FROM joboffer";

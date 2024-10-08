@@ -1,14 +1,14 @@
 <?php
 header("Content-Type: application/json");
-require 'connect.php'; // Connexion à la Base de Données
+require 'Connect.php'; // Connexion à la Base de Données
 
-// Définir le HTTP
+// Définir le HTTP pour connaître la requête (CRUD)
 $method = $_SERVER['REQUEST_METHOD'];
 
-// Récupérer les données
+// Récupérer les données json pour les transmettres dans la BDD sous bon format
 $data = json_decode(file_get_contents("php://input"), true);
 
-// Récupérer toutes les offres d'emploi
+// Récupérer toutes les offres d'emploi de la BDD
 function getJobOffers($conn) {
     $stmt = $conn->prepare("SELECT job_offer_id, title, description, location, salary FROM JobOffer");
     $stmt->execute();
@@ -21,7 +21,7 @@ function createJobOffer($conn, $data) {
     return $stmt->execute([$data['title'], $data['description'], $data['location'], $data['salary'], $data['company_id']]);
 }
 
-// Récupérer une offre d'emploi par ID avec le nom de la compagnie
+// Récupérer une offre d'emploi par ID avec le nom de la compagnie qui la créer
 function getJobOfferById($conn, $id) {
     $stmt = $conn->prepare("
         SELECT 
@@ -42,7 +42,7 @@ function getJobOfferById($conn, $id) {
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
-// Mettre à jour une offre d'emploi
+// Mettre à jour une offre d'emploi dans la BDD
 function updateJobOffer($conn, $id, $data) {
     $stmt = $conn->prepare("UPDATE JobOffer SET title = ?, description = ?, location = ?, salary = ? WHERE job_offer_id = ?");
     return $stmt->execute([$data['title'], $data['description'], $data['location'], $data['salary'], $id]);

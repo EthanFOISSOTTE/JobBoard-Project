@@ -1,5 +1,5 @@
 <?php
-require 'api/connect.php'; // Connexion à la Base de Données
+require 'api/Connect.php'; // Connexion à la Base de Données
 
 // Préparer et exécuter la requête
 $sql = "SELECT job_offer_id, title, description, location, salary, company_id FROM JobOffer";
@@ -17,24 +17,6 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="index.css">
     <title>Job Board</title>
-    <style>
-        .container {
-            display: flex;
-        }
-        .job {
-            width: 50%;
-            border: solid black 2px;
-        }
-        .job div {
-            border: solid black 2px;
-            margin: 2%;
-        }
-        .details {
-            width: 50%;
-            border: solid black 2px;
-            padding: 20px;
-        }
-    </style>
 </head>
 <body>
     <h1>Offres d'emplois</h1>
@@ -74,7 +56,7 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     const id = this.getAttribute('data-id');
 
                     // Requête AJAX pour récupérer les détails de l'offre
-                    fetch('api/job_offer.php?id=' + id)
+                    fetch('api/API.php?id=' + id)
                     .then(response => response.json())
                     .then(data => {
                         if (data) {

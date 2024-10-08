@@ -1,13 +1,28 @@
 <?php
 require 'api/Connect.php'; // Connexion à la Base de Données
 
-// Préparer et exécuter la requête
-$sql = "SELECT job_offer_id, title, description, location, salary, company_id FROM JobOffer";
+// Préparer et exécuter la requête pour récupérer les offres d'emploi et les informations de l'entreprise
+$sql = "
+    SELECT 
+        offers.offre_id, 
+        offers.job_title, 
+        offers.short_description, 
+        offers.job_location, 
+        offers.salary,
+        offers.work_time,
+        offers.markdown_file, 
+        companies.company_name
+    FROM 
+        offers
+    JOIN 
+        companies ON offers.company_id = companies.company_id
+";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 
 // Récupérer tous les résultats
 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 
 <!DOCTYPE html>
@@ -19,22 +34,25 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <title>Job Board</title>
 </head>
 <body>
-    <h1>Offres d'emplois</h1>
+    <h1>Offres d'emploi</h1>
+
+    <a href="Profils/Inscription.php"><button type="button" class="sign-up">Inscription</button></a>
+    <button type="button" class="sign-in">Connexion</button>
 
     <div class="container">
         <div class="job">
             <?php
             // Vérifier s'il y a des offres d'emplois dans la BDD
             if (count($results) > 0) {
-                // Afficher chaque offre d'emplois
+                // Afficher chaque offre d'emploi
                 foreach ($results as $offre) {
                     echo "<div>";
-                    echo "<h2>" . htmlspecialchars($offre["title"]) . "</h2>";
-
-                    $description = htmlspecialchars("Nous recherchons un " . $offre["title"]);
+                    echo "<h2>" . htmlspecialchars($offre["job_title"]) . "</h2>";
+                    
+                    $description = htmlspecialchars("Nous recherchons un " . $offre["job_title"] . ".");
                     echo "<p>" . $description . "</p>";
-
-                    echo "<button type='button' class='btn-offres' data-id='" . $offre["job_offer_id"] . "'>En savoir plus</button>";
+                    
+                    echo "<button type='button' class='btn-offres' data-id='" . $offre["offre_id"] . "'>En savoir plus</button>";
                     echo "</div>";
                 }
             } else {
@@ -61,10 +79,11 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     .then(data => {
                         if (data) {
                             document.getElementById('details').innerHTML = `
-                                <h2>${data.title}</h2>
-                                <p>${data.description}</p>
-                                <p><strong>Location:</strong> ${data.location}</p>
-                                <p><strong>Salary:</strong> $${data.salary}</p>
+                                <h2>${data.job_title}</h2>
+                                <p><strong>Description:</strong> ${data.markdown_file}</p>
+                                <p><strong>Location:</strong> ${data.job_location}</p>
+                                <p><strong>Salary:</strong> ${data.salary}€</p>
+                                <p><strong>Durée:</strong> ${data.work_time}</p>
                                 <p><strong>Company:</strong> ${data.company_name}</p>
                             `;
                         } else {

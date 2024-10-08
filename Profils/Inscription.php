@@ -1,3 +1,7 @@
+<?php
+require "../api/Connect.php";
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -32,43 +36,45 @@
     </div>
 
     <script>
-        document.getElementById('signupButton').addEventListener('click', function() {
-            const firstName = document.getElementById('first_name').value;
-            const lastName = document.getElementById('last_name').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
-            const password = document.getElementById('password').value;
+    document.getElementById('signupButton').addEventListener('click', function() {
+        const firstName = document.getElementById('first_name').value;
+        const lastName = document.getElementById('last_name').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        const password = document.getElementById('password').value;
 
-            const data = {
-                first_name: firstName,
-                last_name: lastName,
-                email: email,
-                phone: phone,
-                password: password
-            };
+        const data = {
+            type: 'user_registration',  // Ajoutez ce champ
+            first_name: firstName,
+            last_name: lastName,
+            email: email,
+            phone: phone,
+            password: password
+        };
 
-            // Envoyer les données à l'API via POST
-            fetch('api/API.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    document.getElementById('responseMessage').textContent = 'Inscription réussie !';
-                    document.getElementById('signupForm').reset();
-                } else {
-                    document.getElementById('responseMessage').textContent = data.message || 'Erreur lors de l\'inscription.';
-                }
-            })
-            .catch(error => {
-                console.error('Erreur:', error);
-                document.getElementById('responseMessage').textContent = 'Erreur lors de l\'inscription.';
-            });
+        // Envoyer les données à l'API via POST
+        fetch('../api/API.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                document.getElementById('responseMessage').textContent = 'Inscription réussie !';
+                document.getElementById('signupForm').reset();
+            } else {
+                document.getElementById('responseMessage').textContent = data.message || 'Erreur lors de l\'inscription.';
+            }
+        })
+        .catch(error => {
+            console.error('Erreur:', error);
+            document.getElementById('responseMessage').textContent = 'Erreur lors de l\'inscription.';
         });
-    </script>
+    });
+</script>
+
 </body>
 </html>

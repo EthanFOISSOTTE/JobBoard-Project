@@ -1,0 +1,10 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.header-page, .zone {
+	padding: 10px;
+	margin: 10px;
+	border: 1px solid #ccc;
+}

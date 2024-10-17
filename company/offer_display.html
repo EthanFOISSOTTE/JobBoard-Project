@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr-FR">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Vue de l'offre de l'Entreprise</title>
+	<link rel="icon" href="#">
+	<link rel="stylesheet" type="text/css" href="offer_display.css">
+</head>
+<body>
+	<div class="header-page">
+		<a href="../page/home.html">Retour à l'accueil</a>
+		<a href="dashboard.html">Retour au tableau de bord</a>
+		<h1 id="title-page">Vue de l'offre de l'Entreprise</h1>
+	</div>
+	
+	<div class="zone">
+		<h3>Offre publier par : <span id="company-title"></span> </h3>
+		<a id="company-website" href="#">Site web</a>
+		<p id="job-location2"></p>
+		<p id="company-description"></p>
+	</div>
+	<div class="zone">
+		<h1 id="offer-title"></h1>
+		<p id="offer-description"></p>
+		<div id="tag-list"></div>
+		<div>Salaire : <span id="salary"></span> ₳</div>
+		<div>Lieu : <span id="job-location"></span></div>
+		<div>Emploi : <span id="work-time"></span></div>
+		<div>Offre créée le <span id="created-at"></span></div>
+	</div>
+	<div class="zone">
+		<div id="markdown-file"></div>
+	</div>
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script type="text/javascript" src="offer_display.js"></script>
+</body>
+</html>
+
+<!--
+┌───────────────┬────────┬────────┬────────┐
+|     Pièce     | PC (₳) |   PO   |   PA   |
+├───────────────┼────────┼────────┼────────┤
+|   Cuivre (PC) | 1      | 0.01   | 0.0001 |
+|       Or (PO) | 100    | 1      | 0.01   |
+| Astrales (PA) | 10000  | 100    | 1      |
+└───────────────┴────────┴────────┴────────┘
+-->

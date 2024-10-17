@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr-FR">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Profil</title>
+	<link rel="icon" href="#">
+	<link rel="stylesheet" href="account.css">
+</head>
+<body>
+	<a href="../page/home.html">Home page</a>
+	<div>
+		<h3>modifier compte</h3>
+		<form id="formUser">
+			<label for="firstname">Prénom</label>
+			<input type="text" name="firstname" placeholder="Prénom" required>
+			<label for="lastname">Nom</label>
+			<input type="text" name="lastname" placeholder="Nom" required>
+			<label for="email">Email</label>
+			<input type="email" name="email" placeholder="Email" required>
+			<label for="phone">Téléphone</label>
+			<input type="phone" name="phone" placeholder="Téléphone" required>
+			<label for="role">Rôle</label>
+			<select name="role" id="role" required>
+				<option value="applicant">Utilisateur</option>
+				<option value="companie">Entreprise</option>
+			</select>
+			<div id="company-form"></div>
+			<input type="submit" value="Modifier">
+		</form>
+	</div>
+	<div>
+		<h3>modifier mot de passe</h3>
+		<form id="formPass">
+			<input type="password" name="password-1" placeholder="Mot de passe" required>
+			<input type="password" name="password-2" placeholder="Confirmer mot de passe" required>
+			<input type="submit" value="Modifier">
+		</form>
+	</div>
+	<div>
+		<h3>supprimer compte</h3>
+		<form id="formSuppr">
+			<input type="submit" value="Supprimer">
+		</form>
+	</div>
+
+	<script type="text/javascript" src="profile.js"></script>
+</body>
+</html>

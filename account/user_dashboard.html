@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Tableau de bord utilisateur</title>
+</head>
+<body>
+    <a href="../page/home.html">Accueil</a>
+    <h1>Suivi de mes candidatures</h1>
+
+    <h2>Candidatures acceptées</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Titre de l'offre</th>
+                <th>Message</th>
+                <th>Statut</th>
+                <th>Date de candidature</th>
+            </tr>
+        </thead>
+        <tbody id="candidatures-acceptees"></tbody>
+    </table>
+
+    <h2>Candidatures en attente</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Titre de l'offre</th>
+                <th>Message</th>
+                <th>Statut</th>
+                <th>Date de candidature</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="candidatures"></tbody>
+    </table>
+
+    <h2>Candidatures rejetées</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Titre de l'offre</th>
+                <th>Message</th>
+                <th>Statut</th>
+                <th>Date de candidature</th>
+            </tr>
+        </thead>
+        <tbody id="candidatures-rejetees"></tbody>
+    </table>
+
+    <h2>Candidatures annulées</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Titre de l'offre</th>
+                <th>Message</th>
+                <th>Statut</th>
+                <th>Date de candidature</th>
+            </tr>
+        </thead>
+        <tbody id="candidatures-annulees"></tbody>
+    </table>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", async function() {
+            const userId = sessionStorage.getItem("user_id"); // Récupération de l'ID utilisateur de la session
+            const offerMap = {};
+            let applications = []; // Liste pour stocker les candidatures
+
+            if (!userId) {
+                alert("Veuillez vous connecter pour accéder à votre tableau de bord.");
+                window.location.href = 'login.html';
+                return;
+            }
+
+            // Fonction pour charger les offres et remplir le offerMap
+            async function loadOffers() {
+                try {
+                    const response = await fetch('../api/api.php?request=offer&method=get');
+                    const offers = await response.json();
+
+                    if (!offers || !Array.isArray(offers)) {
+                        console.error("Erreur lors de la récupération des offres.");
+                        return;
+                    }
+
+                    // Remplir le map d'offres avec ID et titre
+                    offers.forEach(offer => {
+                        offerMap[offer.offre_id] = offer.job_title; // Associer offre_id avec job_title
+                    });
+
+                    // Charger les candidatures après avoir rempli le offerMap
+                    loadUserApplications();
+                } catch (error) {
+                    console.error("Erreur lors de la récupération des offres: ", error);
+                }
+            }
+
+            // Fonction pour charger les candidatures de l'utilisateur
+            async function loadUserApplications() {
+                try {
+                    const response = await fetch(`../api/api.php?request=application&method=get`);
+                    applications = await response.json(); // Stocke toutes les candidatures
+
+                    if (!applications || !Array.isArray(applications)) {
+                        console.error("Erreur lors de la récupération des candidatures.");
+                        return;
+                    }
+
+                    // Filtrer les candidatures pour garder uniquement celles qui appartiennent à l'utilisateur connecté
+                    const acceptedApplications = applications.filter(application =>
+                        application.user_id == userId && application.status === "accepted"
+                    );
+
+                    const waitingApplications = applications.filter(application => 
+                        application.user_id == userId && application.status === "waiting"
+                    );
+
+                    const canceledApplications = applications.filter(application => 
+                        application.user_id == userId && application.status === "canceled"
+                    );
+
+                    const rejectedApplications = applications.filter(application => 
+                        application.user_id == userId && application.status === "rejected"
+                    );
+
+                    // Affichage des candidatures dans les tableaux respectifs
+                    displayApplications(waitingApplications, "candidatures");
+                    displayApplications(canceledApplications, "candidatures-annulees", true); // true pour indiquer qu'il s'agit de candidatures annulées
+                    displayApplications(acceptedApplications, "candidatures-acceptees"); // Afficher candidatures acceptées
+                    displayApplications(rejectedApplications, "candidatures-rejetees", true); // Afficher candidatures rejetées
+                } catch (error) {
+                    console.error("Erreur lors de la récupération des candidatures: ", error);
+                }
+            }
+
+            // Fonction pour afficher les candidatures dans le tableau
+            function displayApplications(applications, tableId, isCanceled = false) {
+                const applicationsTable = document.getElementById(tableId);
+                applicationsTable.innerHTML = ''; // On vide le tableau avant d'afficher les nouvelles données
+
+                applications.forEach(application => {
+                    const row = document.createElement("tr");
+
+                    const offreId = application.offre_id || 'Non spécifié';
+                    const jobTitle = offerMap[application.offre_id] || 'Titre non disponible'; // Utiliser le titre de offerMap
+                    const message = application.message || 'Pas de message';
+                    const status = application.status || 'En attente';
+                    const createdAt = application.created_at ? new Date(application.created_at).toLocaleString() : 'Date non spécifiée';
+
+                    row.innerHTML = `
+                        <td>${jobTitle}</td>
+                        <td>${message}</td>
+                        <td>${status}</td>
+                        <td>${createdAt}</td>
+                    `;
+
+                    // Si ce n'est pas une candidature annulée, ajouter le bouton d'annulation
+                    if (!isCanceled) {
+                        row.innerHTML += `<td><button class="btn-annuler" data-id="${application.application_id}">Annuler</button></td>`;
+                        
+                        // Ajouter l'événement pour le bouton d'annulation
+                        row.querySelector(".btn-annuler").addEventListener("click", function() {
+                            cancelApplication(application.application_id);
+                        });
+                    }
+
+                    applicationsTable.appendChild(row);
+                });
+            }
+
+            // Fonction pour annuler une candidature
+            async function cancelApplication(applicationId) {
+                if (!confirm("Êtes-vous sûr de vouloir annuler cette candidature ?")) {
+                    return;
+                }
+
+                // Trouver l'application concernée dans la liste actuelle
+                const applicationToCancel = applications.find(app => app.application_id === applicationId);
+                
+                // Vérifiez que l'application existe
+                if (!applicationToCancel) {
+                    alert("Candidature non trouvée.");
+                    return;
+                }
+
+                // Mettre à jour le statut de l'application
+                const newStatus = "canceled"; // Nouveau statut
+
+                await updateApplicationStatus(applicationId, newStatus, applicationToCancel);
+            }
+
+            // Fonction pour mettre à jour le statut d'une candidature
+            async function updateApplicationStatus(applicationId, newStatus, application) {
+                try {
+                    const updateApplicationData = {
+                        application_id: applicationId,
+                        offre_id: application.offre_id,
+                        user_id: application.user_id,
+                        message: application.message,
+                        status: newStatus,
+                        created_at: application.created_at
+                    };
+
+                    const response = await fetch('../api/api.php?request=application&method=put', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(updateApplicationData)
+                    });
+
+                    const result = await response.json();
+
+                    if (result.success) {
+                        alert("La candidature a été annulée avec succès.");
+                        application.status = newStatus; // Mise à jour du statut dans la liste locale
+                        loadUserApplications(); // Recharger les candidatures pour rafraîchir la liste
+                    } else {
+                        alert("Erreur lors de la mise à jour du statut.");
+                    }
+                } catch (error) {
+                    console.error("Erreur lors de la mise à jour du statut:", error);
+                }
+            }
+
+            // Charger les offres d'abord, puis les candidatures une fois que offerMap est rempli
+            await loadOffers();
+        });
+    </script>
+</body>
+</html>

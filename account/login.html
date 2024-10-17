@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr-FR">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Connexion</title>
+	<link rel="icon" href="#">
+	<link rel="stylesheet" href="account.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bcryptjs/2.4.3/bcrypt.min.js"></script>
+	<script>const bcrypt = dcodeIO.bcrypt;</script>
+</head>
+<body>
+	<a href="../page/home.html">Home page</a>
+	<form id="loginForm">
+		<label for="email">Email</label>
+		<input type="email" name="email" id="email" required>
+		<label for="password">Mot de passe</label>
+		<input type="password" name="password" id="password" required>
+		
+		<span id="error" style="color: red;"></span>
+		<button type="submit" id="submitBtn">Connexion</button>
+		<a href="sign-in.html">Sign in</a>
+	</form>
+
+	<script type="text/javascript" src="login.js"></script>
+</body>
+</html>

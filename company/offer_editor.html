@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr-FR">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Modification de l'offre de l'Entreprise</title>
+	<link rel="icon" href="#">
+	<link rel="stylesheet" type="text/css" href="offer_display.css">
+</head>
+<body>
+	<div class="header-page">
+		<a href="../page/home.html">Retour à l'accueil</a>
+		<a href="dashboard.html">Retour au tableau de bord</a>
+		<h1 id="title-page">Modification d'offre</h1>
+	</div>
+	
+	<form id="offer-form">
+		<div class="zone">
+			<div>Titre : <input type="text" id="offer-title" maxlength="255"></div>
+			<div>Description : <br>
+				<textarea id="offer-description" maxlength="500" rows="3" cols="80">
+				</textarea>
+			</div>
+			<div>Tags : <br>
+				<textarea id="tag-list" maxlength="255" rows="3" cols="80">
+				</textarea>
+			</div>
+			<div>Salaire : <input type="number" id="salary" min="0" max="999999"> ₳</div>
+			<div>Lieu : <input type="text" id="job-location" maxlength="255"></div>
+			<div>Emploi : <input type="text" id="work-time" maxlength="100"></div>
+			<div id="div-date">Offre créée le <span id="created-at"></span></div>
+		</div>
+		<div class="zone">
+			<div>Description markdown : <br>
+				<textarea id="markdown-file" maxlength="9999" rows="20" style="width: 99%;">
+				</textarea>
+			</div>
+		</div>
+		<div class="zone">
+			<button type="button" id="create-btn" style="display: none;">Créer</button>
+			<button type="button" id="modify-btn" style="display: none;">Modifier</button>
+			<button type="button" id="cancel-btn">Annuler</button>
+		</div>
+	</form>
+
+<script type="text/javascript" src="offer_editor.js"></script>
+</body>
+</html>

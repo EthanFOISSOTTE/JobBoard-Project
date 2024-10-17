@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr-FR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Redirection utilisateur</title>
+
+<script type="text/javascript">
+document.addEventListener("DOMContentLoaded", async function() {
+	// Fonction pour récupérer les données de l'API
+	async function loadData(apiUrl, postData = null) {
+		try {
+			const response = await fetch(apiUrl, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(postData)
+			});
+	        if (!response.ok) {
+	            console.error(`HTTP error! Status: ${response.status}`);
+	            return null;
+	        }
+			const data = await response.json();
+			return data;
+		} catch (error) {
+			console.error("Error: ", error);
+		}
+	}
+
+	// Redirige l'utilisateur selon si il est connect ou non
+	if (sessionStorage.getItem("user_id")) {
+		// Récupérer l'ID de l'utilisateur connect
+		const user_id = sessionStorage.getItem("user_id");
+
+		// Récupérer l'utilisateur connecté
+		const user_data = await loadData("api/api.php?request=user&method=get", { user_id: user_id });
+		if (!user_data || !Array.isArray(user_data)) {
+			console.log("Erreur lors de la récupération des données de l'utilisateur.");
+			return;
+		}
+
+		// Rediriger l'utilisateur selon son rôle
+		switch (user_data[0].role) {
+			case "admin":
+				// console.log("admin...");
+				window.location.href = "moderation/admin.html";
+				break;
+			case "compagnie":
+				// console.log("compagnie...");
+				window.location.href = "company/dashboard.html";
+				break;
+			default:
+				// console.log("default...");
+				window.location.href = "page/home.html";
+				break;
+		}
+	} else {
+		// console.log("sinon...");
+		window.location.href = "page/home.html";
+	}
+});
+</script>
+
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr-FR">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Inscription</title>
+	<link rel="icon" href="#">
+	<link rel="stylesheet" href="account.css">
+</head>
+<body>
+	<a href="../page/home.html">Home page</a>
+	<form id="signinForm">
+		<label for="lastname">Nom</label>
+		<input type="text" name="lastname" id="lastname" required>
+		<label for="firstname">Prénom</label>
+		<input type="text" name="firstname" id="firstname" required>
+
+		<label for="email">Email</label>
+		<input type="email" name="email" id="email" required>
+		<label for="tel">Téléphone</label>
+		<input type="tel" name="tel" id="tel" required>
+
+		<label for="role">Role</label>
+		<select name="role" id="role" required>
+			<option value="applicant">Utilisateur</option>
+			<option value="companie">Entreprise</option>
+		</select>
+
+		<div id="company-form"></div>
+
+		<label for="password-1">Mot de passe</label>
+		<input type="password" name="password-1" id="password-1" required>
+		<label for="password-2">Mot de passe</label>
+		<input type="password" name="password-2" id="password-2" required>
+
+		<span id="error" style="color: red;"></span>
+		<button type="submit" id="submitBtn">Créer</button>
+		<a href="login.html">Login</a>
+	</form>
+
+	<script type="text/javascript" src="sign-in.js"></script>
+</body>
+</html>

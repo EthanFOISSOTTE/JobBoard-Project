@@ -1,0 +1,15 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.offer-item, .header-page {
+	padding: 10px;
+	margin: 10px;
+	border: 1px solid #ccc;
+}
+
+.offer-item {
+	display: flex;
+	justify-content: space-between;
+}

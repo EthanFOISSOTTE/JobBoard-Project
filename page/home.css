@@ -1,0 +1,36 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.container {
+	display: flex;
+}
+
+.job {
+	width: 50%;
+	border: solid black 2px;
+}
+
+.job div {
+	border: solid black 2px;
+	margin: 2%;
+}
+
+.details {
+	width: 50%;
+	border: solid black 2px;
+	padding: 20px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f2f2f2;
+    border-top: 1px solid black;
+    height: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+}

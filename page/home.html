@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr-FR">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Job Board</title>
+	<link rel="stylesheet" type="text/css" href="home.css">
+</head>
+<body>
+	<h1>Offres d'emplois</h1>
+
+	<a href="../account/sign-in.html" id="insc-link" style="display: block;">Inscription</a>
+	<a href="../account/login.html" id="conn-link" style="display: block;">Connexion</a>
+	<a href="../account/logout.html" id="deco-link" style="display: none;">Déconnexion</a>
+	<a href="../account/profile.html" id="profil-link" style="display: none;">Profile</a>
+	<a href="../moderation/admin.html" id="admin-link" style="display: none;">Admin</a>
+	<a href="../company/dashboard.html" id="dash-link" style="display: none;">Tableau de bord</a>
+	<a href="../account/user_dashboard.html" id="userdash-link" style="display: none;">Tableau de bord</a>
+	<span id="conecter"></span>
+
+	<div id="filtre">
+    	<input type="text" id="filter-input" placeholder="Filtrer par mots-clés..." />
+    	<button id="filter-button">Filtrer</button>
+	</div>
+
+	<div class="container">
+		<div class="job" id="job"></div>
+		<div class="details" id="details">
+			<p>Sélectionnez une offre d'emploi pour voir les détails ici.</p>
+		</div>
+	</div>
+
+	<footer>
+		<p>© 2023 Job Board - Tous droits réservés</p>
+	</footer>
+
+<script type="text/javascript" src="home.js"></script>
+</body>
+</html>

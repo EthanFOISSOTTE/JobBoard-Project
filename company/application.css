@@ -1,0 +1,10 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.header-page, .application-sublist, .application-item {
+	padding: 10px;
+	margin: 10px;
+	border: 1px solid #ccc;
+}

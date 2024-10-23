@@ -1,22 +1,3 @@
-//  ╔═══════════════════════════════════════════════════════════════════╗
-//  ║Titre : dashboard.js                                               ║
-//  ║Description : Permet la modération des candidatures et des offres  ║
-//  ║              d'une entreprise par son responsable                 ║
-//  ║Auteur : FOISSOTTE Ethan / HARQUET Pol-Mattis                      ║
-//  ║Date : 17/10/2024 (modification)                                   ║
-//  ║Version : 2.1 (Ajout de commentaires)                              ║
-//  ╚═══════════════════════════════════════════════════════════════════╝
-
-// INDEX : DONNEES DES OFFRES POSTER PAR L'ENTREPRISE [15 - 36]
-//         PERMET LA GESTION D'UNE OFFRE, ET NOTIFICATION DE SUPPRESSION [37 - 104]
-//         AFFICHAGE DES OFFRES POSTER PAR L'ENTREPRISE + CANDIDATURE [105 - 220]
-
-
-//  ╔═══════════════════════════════════════════════════════════════════╗
-//  ║      		 DONNEES DES OFFRES POSTER PAR L'ENTREPRISE   	        ║
-//  ╚═══════════════════════════════════════════════════════════════════╝
-
-
 // Fonction pour récupérer les données de l'API
 async function loadData(apiUrl, postData = null) {
 	try {
@@ -34,13 +15,9 @@ async function loadData(apiUrl, postData = null) {
 	}
 }
 
-//  ╔═══════════════════════════════════════════════════════════════════╗
-//  ║	PERMET LA GESTION D'UNE OFFRE, ET NOTIFICATION DE SUPPRESSION   ║
-//  ╚═══════════════════════════════════════════════════════════════════╝
-
 // Fonction pour modifier une offre
 function editOffer(id) {
-	// Rediriger le responsable de l'entreprise vers la page de modification de l'offre
+	// Rediriger l'utilisateur vers la page de modification de l'offre
 	window.location.href = `offer_editor.html?editor=modify&id=${id}`;
 }
 
@@ -102,11 +79,8 @@ async function deleteOffer(id) {
 	}
 }
 
-//  ╔═══════════════════════════════════════════════════════════════════╗
-//  ║     AFFICHAGE DES OFFRES POSTER PAR L'ENTREPRISE + CANDIDATURE    ║
-//  ╚═══════════════════════════════════════════════════════════════════╝
-
 document.addEventListener("DOMContentLoaded", async function() {
+	// Déclarer la variable user
 	let user = null;
 	let company = null;
 

@@ -1,19 +1,3 @@
-//  ╔═══════════════════════════════════════════════════════════════════╗
-//  ║Titre : dashboard.js                                               ║
-//  ║Description : Permet la modération des candidatures et des offres  ║
-//  ║              d'une entreprise par son responsable                 ║
-//  ║Auteur : FOISSOTTE Ethan / HARQUET Pol-Mattis                      ║
-//  ║Date : 17/10/2024 (modification)                                   ║
-//  ║Version : 2.1 (Ajout de commentaires)                              ║
-//  ╚═══════════════════════════════════════════════════════════════════╝
-
-// INDEX : DONNEES DES OFFRES / ENTREPRISE / UTILISATEURS [17 - 136]
-
-
-//  ╔═══════════════════════════════════════════════════════════════════╗
-//  ║      	   DONNEES DES OFFRES / ENTREPRISE / UTILISATEURS  	        ║
-//  ╚═══════════════════════════════════════════════════════════════════╝
-
 document.addEventListener("DOMContentLoaded", async function() {
 	// Fonction pour récupérer les données de l'API
 	async function loadData(apiUrl, postData = null) {

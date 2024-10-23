@@ -8,33 +8,54 @@
 	<link rel="stylesheet" href="account.css">
 </head>
 <body>
-	<a href="../page/home.html">Home page</a>
-	<form id="signinForm">
-		<label for="lastname">Nom</label>
-		<input type="text" name="lastname" id="lastname" required>
-		<label for="firstname">Prénom</label>
-		<input type="text" name="firstname" id="firstname" required>
+	<div class="lignes-ornaments"></div>
+	<div class="job-container" id="job"></div>
 
-		<label for="email">Email</label>
-		<input type="email" name="email" id="email" required>
-		<label for="tel">Téléphone</label>
-		<input type="tel" name="tel" id="tel" required>
+	<form id="signinForm" class="formulaire">
+		<div class="blason"></div>
+		<a href="../page/home.html" class="home">Accueil</a>
 
-		<label for="role">Role</label>
-		<select name="role" id="role" required>
-			<option value="applicant">Utilisateur</option>
-			<option value="companie">Entreprise</option>
-		</select>
+		<div class="nom">
+			<label for="lastname" class="label_nom">Nom</label>
+			<input type="text" name="lastname" id="lastname" class="input_nom" required>
+		</div>
+		<div class="prenom">
+			<label for="firstname" class="label_prenom">Prénom</label>
+			<input type="text" name="firstname" id="firstname" class="input_prenom" required>
+		</div>
+		<div class="adresse">
+			<label for="email" class="label_adresse">Email</label>
+			<input type="email" name="email" id="email" class="input_adresse" required>
+		</div>
+		<div class="tel">
+			<label for="tel" class="label_tel">Téléphone</label>
+			<input type="tel" name="tel" id="tel" class="input_tel" required>
+		</div>
+		
+		<div class="role">
+			<label class="label_role" for="role">Role</label>
+			<select name="role" id="role" required>
+				<option value="applicant">Utilisateur</option>
+				<option value="companie">Entreprise</option>
+			</select>
+		</div>
+		
 
-		<div id="company-form"></div>
+		<div id="company-form" class="company_form"></div>
 
-		<label for="password-1">Mot de passe</label>
-		<input type="password" name="password-1" id="password-1" required>
-		<label for="password-2">Mot de passe</label>
-		<input type="password" name="password-2" id="password-2" required>
+		<div class="motdepasse">
+			<label for="password-1" class="label_motdepasse">Mot de passe</label>
+			<input type="password" name="password-1" id="password-1" class="input_motdepasse" required>
+		</div>
+		
+		<div class="confirmer">
+			<label for="password-2" class="label_confirmer">Confirmer</label>
+			<input type="password" name="password-2" id="password-2" class="input_confirmer" required>
+		</div>
+		
 
 		<span id="error" style="color: red;"></span>
-		<button type="submit" id="submitBtn">Créer</button>
+		<button type="submit" id="submitBtn" class="inscriptions">Créer</button>
 		<a href="login.html">Login</a>
 	</form>
 

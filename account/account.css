@@ -4,11 +4,14 @@
 }
 
 body {
+	background-image: url('../images/assets/wood-mosaic.png');
+	background-size: 25%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	height: 100vh;
+	overflow: hidden;
 }
 
 form, div {
@@ -26,4 +29,649 @@ div {
 
 input, span, button, select {
 	margin-bottom: 2vh;
+}
+
+.lignes-ornaments {
+	position: absolute;
+	top: 7vw;
+	left: 33.5vw;
+	width: calc(50% - 17vw);
+	height: 90%;
+	border-radius: 10% 10% 0 0;
+	background-image: url('../images/assets/paper-mosaic.png');
+	background-size: 50%;
+
+	&:after {
+		content: '';
+		position: absolute;
+		top: 1vw;
+		left: 0;
+		width: calc(1vw);
+		height: 100%;
+		aspect-ratio: 6/222;
+		background-image: url('../images/assets/ligne-ornament.png');
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+		z-index: 49;
+	}
+	&:before {
+		content: '';
+		position: absolute;
+		top: 1vw;
+		right: 0;
+		width: calc(1vw);
+		height: 100%;
+		aspect-ratio: 6/222;
+		background-image: url('../images/assets/ligne-ornament.png');
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+		z-index: 49;
+	}
+}
+
+.job-container {
+	margin-top: 5.9vw;
+	padding-top: 2vw;
+	height: 100%;
+	border-radius: 10% 10% 0 0;
+	overflow: auto;
+
+	/* cacher la scrollbar */
+	&:-webkit-scrollbar { display: none; } /* Chrome */
+	-ms-overflow-style: none;  /* IE, Edge */
+	scrollbar-width: none; /* Firefox */
+
+	&:after {
+		content: '';
+		position: absolute;
+		top: 1vw;
+		left: 32.5vw;
+		width: calc(50% - 15vw);
+		aspect-ratio: 190/46;
+		background-image: url('../images/assets/top-ornament.png');
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+		z-index: 50;
+	}
+
+}
+
+.formulaire {
+	position: absolute;
+	top: 20vw;
+	left: 44.5vw;
+}
+
+.home {
+	position: absolute;
+	top: -20vh;
+	left: 2vw;
+	width: 15vw;
+	height: 3vw;
+	display: flex;
+	justify-content: center;
+	background-image: url('../images/assets/button.png');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	padding-top: 2px;
+	font-size: 30px;
+	color: white;
+}
+
+.mail {
+	position: absolute;
+	top: 4vh;
+	left: -7vw;
+	width: 25vw;
+	height: 8vw;
+	display: flex;
+	justify-content: space-between;
+	background-image: url('../images/assets/wood-plank.png');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+.input_email {
+	width: 15vw;
+	height: calc(15vw * (28/122));
+	padding: 0 1vw;
+	margin-bottom: 15px;
+	background-image: url('../images/assets/input.png');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+
+	background-color: transparent;
+	border: none;
+	font-size: 18px;
+	color: white;
+	outline: none;
+
+	&::placeholder { color: rgba(255, 255, 255, 0.7); }
+}
+
+.label_email {
+	width: 12vw;
+	height: auto;
+	margin-top: 15px;
+	background-image: url('../images/assets/wood-nav.png');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+
+	background-color: transparent;
+	border: none;
+	font-family: 'Augusta';
+	font-size: 40px;
+	text-align: center;
+	color: white;
+	outline: none;
+
+	&::placeholder { color: rgba(255, 255, 255, 0.7); }
+}
+
+.pass {
+	position: absolute;
+	top: 22vh;
+	left: -7vw;
+	width: 25vw;
+	height: 8vw;
+	display: flex;
+	justify-content: space-between;
+	background-image: url('../images/assets/wood-plank.png');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+.label_pass {
+	width: 15vw;
+	height: auto;
+	margin-top: 15px;
+	background-image: url('../images/assets/wood-nav.png');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+
+	background-color: transparent;
+	border: none;
+	font-family: 'Augusta';
+	font-size: 35px;
+	text-align: center;
+	color: white;
+	outline: none;
+
+	&::placeholder { color: rgba(255, 255, 255, 0.7); }
+}
+
+.input_pass {
+	width: 15vw;
+	height: calc(15vw * (28/122));
+	padding: 0 1vw;
+	margin-bottom: 15px;
+	background-image: url('../images/assets/input.png');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+
+	background-color: transparent;
+	border: none;
+	font-size: 18px;
+	color: white;
+	outline: none;
+
+	&::placeholder { color: rgba(255, 255, 255, 0.7); }
+}
+
+.connexion {
+	position: absolute;
+	top: 23vw;
+	left: -7.5vw;
+	width: 12vw;
+	height: 3vw;
+	display: flex;
+	justify-content: center;
+	background-image: url('../images/assets/button.png');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	padding-top: 8px;
+	font-size: 22px;
+	color: white;
+}
+
+.inscription {
+	position: absolute;
+	top: 23vw;
+	left: 7vw;
+	width: 12vw;
+	height: 3vw;
+	display: flex;
+	justify-content: center;
+	background-image: url('../images/assets/button.png');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	padding-top: 8px;
+	font-size: 22px;
+	color: white;
+}
+
+.blason {
+	position: absolute;
+	top: -11vw;
+	left: -11.5vw;
+	width: 11vw;
+	aspect-ratio: 1/1;
+	background-image: url('../images/assets/blason-dragon-l.png');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+.nom {
+	position: absolute;
+	top: 2vh;
+	left: -8vw;
+	width: 13vw;
+	height: 5vw;
+	display: flex;
+	justify-content: space-between;
+	background-image: url('../images/assets/wood-plank.png');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+.label_nom {
+	width: 8vw;
+	height: auto;
+	margin-top: 15px;
+	background-image: url('../images/assets/wood-nav.png');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+
+	background-color: transparent;
+	border: none;
+	font-family: 'Augusta';
+	font-size: 24px;
+	text-align: center;
+	color: white;
+	outline: none;
+
+	&::placeholder { color: rgba(255, 255, 255, 0.7); }
+}
+
+.input_nom {
+	width: 9vw;
+	padding: 0 1vw;
+	margin-bottom: 15px;
+	background-image: url('../images/assets/input.png');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+
+	background-color: transparent;
+	border: none;
+	font-size: 20px;
+	color: white;
+	outline: none;
+
+	&::placeholder { color: rgba(255, 255, 255, 0.7); }
+}
+
+.prenom {
+	position: absolute;
+	top: 2vh;
+	left: 6vw;
+	width: 13vw;
+	height: 5vw;
+	display: flex;
+	justify-content: space-between;
+	background-image: url('../images/assets/wood-plank.png');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+.label_prenom {
+	width: 8vw;
+	height: auto;
+	margin-top: 15px;
+	background-image: url('../images/assets/wood-nav.png');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+
+	background-color: transparent;
+	border: none;
+	font-family: 'Augusta';
+	font-size: 24px;
+	text-align: center;
+	color: white;
+	outline: none;
+
+	&::placeholder { color: rgba(255, 255, 255, 0.7); }
+}
+
+.input_prenom {
+	width: 9vw;
+	padding: 0 1vw;
+	margin-bottom: 15px;
+	background-image: url('../images/assets/input.png');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+
+	background-color: transparent;
+	border: none;
+	font-size: 20px;
+	color: white;
+	outline: none;
+
+	&::placeholder { color: rgba(255, 255, 255, 0.7); }
+}
+
+.adresse {
+	position: absolute;
+	top: 13vh;
+	left: -8vw;
+	width: 13vw;
+	height: 5vw;
+	display: flex;
+	justify-content: space-between;
+	background-image: url('../images/assets/wood-plank.png');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+.label_adresse {
+	width: 8vw;
+	height: auto;
+	margin-top: 15px;
+	background-image: url('../images/assets/wood-nav.png');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+
+	background-color: transparent;
+	border: none;
+	font-family: 'Augusta';
+	font-size: 24px;
+	text-align: center;
+	color: white;
+	outline: none;
+
+	&::placeholder { color: rgba(255, 255, 255, 0.7); }
+}
+
+.input_adresse {
+	width: 9vw;
+	padding: 0 1vw;
+	margin-bottom: 15px;
+	background-image: url('../images/assets/input.png');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+
+	background-color: transparent;
+	border: none;
+	font-size: 20px;
+	color: white;
+	outline: none;
+
+	&::placeholder { color: rgba(255, 255, 255, 0.7); }
+}
+
+.tel {
+	position: absolute;
+	top: 13vh;
+	left: 6vw;
+	width: 13vw;
+	height: 5vw;
+	display: flex;
+	justify-content: space-between;
+	background-image: url('../images/assets/wood-plank.png');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+.label_tel {
+	width: 8vw;
+	height: auto;
+	margin-top: 15px;
+	background-image: url('../images/assets/wood-nav.png');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+
+	background-color: transparent;
+	border: none;
+	font-family: 'Augusta';
+	font-size: 24px;
+	text-align: center;
+	color: white;
+	outline: none;
+
+	&::placeholder { color: rgba(255, 255, 255, 0.7); }
+}
+
+.input_tel {
+	width: 9vw;
+	padding: 0 1vw;
+	margin-bottom: 15px;
+	background-image: url('../images/assets/input.png');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+
+	background-color: transparent;
+	border: none;
+	font-size: 20px;
+	color: white;
+	outline: none;
+
+	&::placeholder { color: rgba(255, 255, 255, 0.7); }
+}
+
+.role {
+	position: absolute;
+	top: -10vh;
+	left: 6vw;
+	width: 13vw;
+	height: 5vw;
+	display: flex;
+	justify-content: space-between;
+	background-image: url('../images/assets/wood-plank.png');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+.label_role {
+	width: 8vw;
+	height: auto;
+	margin-top: 15px;
+	background-image: url('../images/assets/wood-nav.png');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+
+	background-color: transparent;
+	border: none;
+	font-family: 'Augusta';
+	font-size: 24px;
+	text-align: center;
+	color: white;
+	outline: none;
+
+	&::placeholder { color: rgba(255, 255, 255, 0.7); }
+}
+
+.confirmer {
+	position: absolute;
+	top: 24vh;
+	left: 6vw;
+	width: 13vw;
+	height: 5vw;
+	display: flex;
+	justify-content: space-between;
+	background-image: url('../images/assets/wood-plank.png');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+.label_confirmer {
+	width: 8vw;
+	height: auto;
+	margin-top: 15px;
+	background-image: url('../images/assets/wood-nav.png');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+
+	background-color: transparent;
+	border: none;
+	font-family: 'Augusta';
+	font-size: 24px;
+	text-align: center;
+	color: white;
+	outline: none;
+
+	&::placeholder { color: rgba(255, 255, 255, 0.7); }
+}
+
+.input_confirmer {
+	width: 9vw;
+	padding: 0 1vw;
+	margin-bottom: 15px;
+	background-image: url('../images/assets/input.png');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+
+	background-color: transparent;
+	border: none;
+	font-size: 20px;
+	color: white;
+	outline: none;
+
+	&::placeholder { color: rgba(255, 255, 255, 0.7); }
+}
+
+.motdepasse {
+	position: absolute;
+	top: 24vh;
+	left: -8vw;
+	width: 13vw;
+	height: 5vw;
+	display: flex;
+	justify-content: space-between;
+	background-image: url('../images/assets/wood-plank.png');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+.label_motdepasse {
+	width: 9vw;
+	height: auto;
+	margin-top: 15px;
+	background-image: url('../images/assets/wood-nav.png');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+
+	background-color: transparent;
+	border: none;
+	font-family: 'Augusta';
+	font-size: 22px;
+	text-align: center;
+	color: white;
+	outline: none;
+
+	&::placeholder { color: rgba(255, 255, 255, 0.7); }
+}
+
+.input_motdepasse {
+	width: 9vw;
+	padding: 0 1vw;
+	margin-bottom: 15px;
+	background-image: url('../images/assets/input.png');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+
+	background-color: transparent;
+	border: none;
+	font-size: 20px;
+	color: white;
+	outline: none;
+
+	&::placeholder { color: rgba(255, 255, 255, 0.7); }
+}
+
+.company_form {
+	position: absolute;
+	top: 35vh;
+	left: 6vw;
+	width: 13vw;
+	height: 10vw;
+	display: flex;
+	background-image: url('../images/assets/wood-plank.png');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+.inscriptions {
+	position: absolute;
+	top: 40vh;
+	left: -8vw;
+	width: 13vw;
+	height: 5vw;
+	display: flex;
+	align-items: center;  /* Centre verticalement */
+	justify-content: center;  /* Centre horizontalement */
+	color: white;
+	font-size: 30px;
+	background-image: url('../images/assets/button.png');
+	background-size: 100% 100%;  /* Adapte l'image pour couvrir toute la zone */
+	background-repeat: no-repeat;
+	background-position: center; /* Centre l'image */
+	border: none;  /* Retire toute bordure potentielle */
+	padding: 0;
+	margin: 0;
+}
+
+#company-name {
+	width: 12vw;
+	height: auto;
+	margin-top: 8px;
+	background-image: url('../images/assets/input.png');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+
+	background-color: transparent;
+	border: none;
+	font-family: 'Augusta';
+	font-size: 20px;
+	text-align: center;
+	color: white;
+	outline: none;
+
+	&::placeholder { color: rgba(255, 255, 255, 0.7); }
+}
+
+#company-desc {
+	width: 12vw;
+	height: auto;
+	margin-top: 15px;
+	background-image: url('../images/assets/input.png');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+
+	background-color: transparent;
+	border: none;
+	font-family: 'Augusta';
+	font-size: 18px;
+	text-align: center;
+	color: white;
+	outline: none;
+
+	&::placeholder { color: rgba(255, 255, 255, 0.7); }
+}
+
+#company-site {
+	width: 12vw;
+	height: auto;
+	margin-top: 15px;
+	background-image: url('../images/assets/input.png');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+
+	background-color: transparent;
+	border: none;
+	font-family: 'Augusta';
+	font-size: 18px;
+	text-align: center;
+	color: white;
+	outline: none;
+
+	&::placeholder { color: rgba(255, 255, 255, 0.7); }
 }

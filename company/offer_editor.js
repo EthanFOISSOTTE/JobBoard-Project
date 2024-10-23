@@ -1,21 +1,3 @@
-//  ╔═══════════════════════════════════════════════════════════════════╗
-//  ║Titre : dashboard.js                                               ║
-//  ║Description : Permet la modération des candidatures et des offres  ║
-//  ║              d'une entreprise par son responsable                 ║
-//  ║Auteur : FOISSOTTE Ethan / HARQUET Pol-Mattis                      ║
-//  ║Date : 17/10/2024 (modification)                                   ║
-//  ║Version : 2.1 (Ajout de commentaires)                              ║
-//  ╚═══════════════════════════════════════════════════════════════════╝
-
-// INDEX : DONNEES DES OFFRES POSTER PAR L'ENTREPRISE [15 - 36]
-//         PERMET LA GESTION D'UNE OFFRE, ET NOTIFICATION DE SUPPRESSION [37 - 104]
-//         AFFICHAGE DES OFFRES POSTER PAR L'ENTREPRISE + CANDIDATURE [105 - 220]
-
-
-//  ╔═══════════════════════════════════════════════════════════════════╗
-//  ║      		 DONNEES DES OFFRES POSTER PAR L'ENTREPRISE   	        ║
-//  ╚═══════════════════════════════════════════════════════════════════╝
-
 // Inisialisation des variobles global
 let offer;
 let companyID;

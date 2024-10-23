@@ -1,0 +1,195 @@
+* {
+	margin: 0;
+	padding: 0;
+	font-family: 'Times New Roman', serif;
+}
+
+body {
+	background-image: url('../images/assets/wood-mosaic.png');
+	background-size: 25%;
+	position: relative;
+	overflow: hidden;
+}
+
+.blason {
+	position: absolute;
+	top: 1vw;
+	left: 2vw;
+	width: 11vw;
+	aspect-ratio: 1/1;
+	background-image: url('../images/assets/blason-dragon-l.png');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+nav {
+	margin: 0 auto;
+	height: 12vw;
+	aspect-ratio: 24/4;
+	background-image: url('../images/assets/wood-nav.png');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+}
+
+h1 {
+	font-family: 'Augusta';
+	font-size: 6vw;
+	background-color: rgb(66, 47, 33);
+	color: transparent;
+	text-shadow: 3px 3px 2px rgba(140, 102, 73, 0.8);
+	-webkit-background-clip: text;
+	-moz-background-clip: text;
+	background-clip: text;
+	opacity: 0.9;
+}
+
+.nail {
+	position: absolute;
+	&:before, &:after {
+		content: '';
+		position: absolute;
+		top: -5vw;
+		width: 3vw;
+		aspect-ratio: 1/1;
+		background-image: url('../images/assets/nail.png');
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+	}
+	&:after {
+		top: 1.5vw;
+	}
+}
+
+.right-nail {
+	&:before, &:after {
+		right: 32vw;
+	}
+}
+
+.left-nail {
+	&:before, &:after {
+		left: 32vw;
+	}
+}
+
+menu {
+	position: absolute;
+	top: 1vw;
+	right: 2vw;
+	width: 11vw;
+	padding-top: 2.5vw;
+	height: calc(12.2vw - 2.5vw);
+	background-image: url('../images/assets/banner.png');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+menu a {
+	display: flex;
+	margin: 0 2.8vw 0.4vw 2.8vw;
+	padding: 0.2vw;
+	background-color: rgba(158, 114, 94, 0.5);
+	color: #fbd49f;
+	text-align: center;
+	text-decoration: none;
+	font-size: 0.9vw;
+	font-weight: bold;
+	cursor: pointer;
+	transition: 0.3s;
+}
+
+menu a:hover {
+	transform: scale(1.1);
+}
+
+/* Style de la div principale avec scrollbar */
+.principale {
+	position: absolute;
+	top: 13vw; /* Réduction de la valeur pour remonter la div */
+	left: 50%;
+	transform: translateX(-50%);
+	background-image: url('../images/assets/parchemain.png');
+	background-size: 100% 100%; /* Ajustement pour que l'image s'étende */
+	background-repeat: no-repeat;
+	padding-top: 2vw;
+	height: calc(100vh - 12vw); /* S'étend jusqu'en bas, avec ajustement pour la hauteur */
+	width: 70vw; /* Réduction de la largeur de la div pour correspondre aux nouveaux tableaux */
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	scrollbar-width: thin;
+	scrollbar-color: rgba(66, 47, 33, 0.8) rgba(0, 0, 0, 0.2);
+}
+
+/* Style des titres de section */
+h2 {
+	font-family: 'Augusta';
+	font-size: 3vw;
+	color: #382007;
+	margin: 2vw 0 1vw 2vw;
+}
+
+/* Style des tableaux de candidatures */
+table {
+	width: 75%; /* Réduction de la largeur des tableaux */
+	margin: 1vw auto;
+	border: 1px solid black;
+	border-collapse: collapse;
+	table-layout: fixed;
+	font-size: 1.2vw;
+}
+
+thead {
+	background-color: rgba(66, 47, 33, 0.8);
+	color: white;
+}
+
+th, td {
+	padding: 0.5vw;
+	border: 1px solid black;
+	text-align: left;
+}
+
+tr:nth-child(even) {
+	background-color: rgba(0, 0, 0, 0.05);
+}
+
+tr:hover {
+	background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* Style pour le bouton d'annulation */
+button.btn-annuler {
+	background-color: rgba(255, 66, 66, 0.8);
+	border: none;
+	padding: 0.5vw 1vw;
+	font-size: 1vw;
+	color: white;
+	cursor: pointer;
+	transition: 0.3s;
+}
+
+button.btn-annuler:hover {
+	background-color: rgba(200, 0, 0, 0.8);
+	transform: scale(1.05);
+}
+
+/* Style personnalisé pour la scrollbar (pour les navigateurs supportés) */
+.principale::-webkit-scrollbar {
+	width: 10px;
+}
+
+.principale::-webkit-scrollbar-track {
+	background: rgba(0, 0, 0, 0.2);
+}
+
+.principale::-webkit-scrollbar-thumb {
+	background-color: rgba(66, 47, 33, 0.8);
+	border-radius: 5px;
+}

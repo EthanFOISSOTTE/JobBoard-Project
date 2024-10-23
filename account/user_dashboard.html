@@ -3,12 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <title>Tableau de bord utilisateur</title>
+    <link rel="stylesheet" type="text/css" href="../font/font.css">
+    <link rel="stylesheet" type="text/css" href="user_dashboard.css">
 </head>
 <body>
-    <a href="../page/home.html">Accueil</a>
-    <h1>Suivi de mes candidatures</h1>
 
-    <h2>Candidatures acceptées</h2>
+    <div class="blason"></div>
+    <nav>
+        <h3 id="test" style="display: none;"></h3>
+        <div class="nail right-nail"></div>
+        <h1>Suivi de mes candidatures</h1>
+        <div class="nail left-nail"></div>
+    </nav>
+    <menu>
+        <a href="../page/home.html">Accueil</a>
+    </menu>
+
+
+
+
+    <!-- <div class="elements">
+        <select id="dataSelect">
+            <option value="">Sélectionnez une catégorie</option>
+        </select>
+        <input type="text" id="searchInput" placeholder="Rechercher un utilisateur..." />
+        <br><div id="buttonContainer"></div>
+    </div>
+
+    <div class="contener-aff">
+        <div id="affichage"></div>
+    </div> -->
+
+
+
+
+<div class="principale">
+        <h2>Candidatures acceptées</h2>
     <table>
         <thead>
             <tr>
@@ -16,6 +46,7 @@
                 <th>Message</th>
                 <th>Statut</th>
                 <th>Date de candidature</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody id="candidatures-acceptees"></tbody>
@@ -60,6 +91,8 @@
         </thead>
         <tbody id="candidatures-annulees"></tbody>
     </table>
+</div>
+
 
     <script>
         document.addEventListener("DOMContentLoaded", async function() {

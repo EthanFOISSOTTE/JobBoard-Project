@@ -1,20 +1,3 @@
-//  ╔═══════════════════════════════════════════════════════════════════╗
-//  ║Titre : application.js                                             ║
-//  ║Description : C'est la page de visualisation des candidatures      ║
-//  ║Auteur : FOISSOTTE Ethan / HARQUET Pol-Mattis                      ║
-//  ║Date : 17/10/2024 (modification)                                   ║
-//  ║Version : 2.1 (Ajout de commentaires)                              ║
-//  ╚═══════════════════════════════════════════════════════════════════╝
-
-// INDEX : AFFICHAGE DES DONNEES DES OFFRES POSTER PAR L'ENTREPRISE [15- 35]
-//         ACTIONS DE L'ENTREPRISE PAR RAPPORT AUX CANDIDATS DE L'OFFRE [36 - 93]
-//         RECUPERATION DES DONNEES DU CANDIDAT, DE L'OFFRE, DE L'ENTREPRISE [94 - 239]
-
-
-//  ╔═══════════════════════════════════════════════════════════════════╗
-//  ║      AFFICHAGE DES DONNEES DES OFFRES POSTER PAR L'ENTREPRISE     ║
-//  ╚═══════════════════════════════════════════════════════════════════╝
-
 // Fonction pour récupérer les données de l'API
 async function loadData(apiUrl, postData = null) {
 	try {
@@ -32,10 +15,6 @@ async function loadData(apiUrl, postData = null) {
 	}
 }
 
-//  ╔═══════════════════════════════════════════════════════════════════╗
-//  ║		 ACTIONS DE L'ENTREPRISE PAR RAPPORT AUX CANDIDATS DE L'OFFRE   ║
-//  ╚═══════════════════════════════════════════════════════════════════╝
-
 // Fonction pour traiter une candidature (accepter ou rejeter)
 async function handleApplication(applicationID, jobTitle, action) {
   // Demander une confirmation
@@ -44,7 +23,7 @@ async function handleApplication(applicationID, jobTitle, action) {
     return;
   }
 
-  // Récupérer les données de la candidature du candidat
+  // Récupérer les données de la candidature
   const application_data = await loadData('../api/api.php?request=application&method=get', { application_id: applicationID });
   if (!application_data || !Array.isArray(application_data)) {
     console.log("Erreur lors de la récupération des données de la candidature.");
@@ -90,36 +69,33 @@ async function handleApplication(applicationID, jobTitle, action) {
   }
 }
 
-//  ╔═══════════════════════════════════════════════════════════════════╗
-//  ║	RECUPERATION DES DONNEES DU CANDIDAT, DE L'OFFRE, DE L'ENTREPRISE ║
-//  ╚═══════════════════════════════════════════════════════════════════╝
-
 document.addEventListener("DOMContentLoaded", async function() {
+	// Déclarer la variable user
 	let user = null;
 	let company = null;
 
 	if (sessionStorage.getItem("user_id")) {
-		// Récupération des données utilisateurs
+		// Récupération des données utilisateur
 		const user_data = await loadData("../api/api.php?request=user&method=get");
 		if (!user_data || !Array.isArray(user_data)) {
 			console.log("Erreur lors de la récupération des données utilisateur.");
 			return;
 		}
-		// Trouver l'utilisateur correspondant à l'ID stocké de la candidature
+		// Trouver l'utilisateur correspondant à l'ID stocké
 		user = user_data.find(u => u.user_id == sessionStorage.getItem("user_id"));
 
 		if (user.role == "compagnie") {
-			// Récupération des données de l'entreprise'
+			// Récupération des données de la compagn
 			const company_data = await loadData('../api/api.php?request=company&method=get');
 			if (!company_data || !Array.isArray(company_data)) {
 				console.log("Erreur lors de la récupération des données entreprise.");
 				return;
 			}
-			// récupérer les données de l'entreprise du responsable
+			// récupérer les données de l'entreprise de l'utilisateur
 			company = company_data.find(c => c.user_id == user.user_id);
 		} else {
 			console.log("Utilisateur non trouvé ou rôle invalide.");
-			// Rediriger l'utilisateur 
+			// Rediriger l'utilisateur
 			window.location.href = "../index.html";
 		}
 	} else {
@@ -165,7 +141,7 @@ document.addEventListener("DOMContentLoaded", async function() {
 		usersMap[user.user_id] = user;
 	});
 
-	// Compter le nombre de candidatures pour chaque statuts
+	// Conter le nombre de candidatures pour chaque état
 	let waiting = 0, rejected = 0, accepted = 0, canceled = 0;
 
 	applications.forEach(application => {

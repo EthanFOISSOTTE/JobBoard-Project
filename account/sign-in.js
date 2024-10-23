@@ -139,7 +139,6 @@ document.addEventListener("DOMContentLoaded", function() {
 		if (role === 'companie') {
 			// ajouter dans le formulaire dans le div #company-form
 			document.getElementById('company-form').innerHTML = `
-				<span>Entreprise</span>
 				<input type="text" name="company-name" id="company-name" placeholder="Nom de l'entreprise" required>
 				<input type="text" name="company-desc" id="company-desc" placeholder="Description de l'entreprise" required>
 				<input type="text" name="company-site" id="company-site" placeholder="Site web de l'entreprise" required>

@@ -10,16 +10,26 @@
 	<script>const bcrypt = dcodeIO.bcrypt;</script>
 </head>
 <body>
-	<a href="../page/home.html">Home page</a>
-	<form id="loginForm">
-		<label for="email">Email</label>
-		<input type="email" name="email" id="email" required>
-		<label for="password">Mot de passe</label>
-		<input type="password" name="password" id="password" required>
+	
+	<div class="lignes-ornaments"></div>
+	<div class="job-container" id="job"></div>
+
+	<form class="formulaire" id="loginForm">
+		<div class="blason"></div>
+		<a href="../page/home.html" class="home">Accueil</a>
+		<div class="mail">
+			<label class="label_email" for="email">Email</label>
+			<input class="input_email" type="email" name="email" id="email" required>
+		</div>
+		<div class="pass">
+			<label class="label_pass" for="password">Mot de passe</label>
+			<input class="input_pass" type="password" name="password" id="password" required>
+		</div>
+		
 		
 		<span id="error" style="color: red;"></span>
-		<button type="submit" id="submitBtn">Connexion</button>
-		<a href="sign-in.html">Sign in</a>
+		<button class="connexion" type="submit" id="submitBtn">Connexion</button>
+		<a class="inscription" href="sign-in.html">S'inscrire</a>
 	</form>
 
 	<script type="text/javascript" src="login.js"></script>
